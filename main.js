@@ -48,11 +48,19 @@ console.log(etudiant1.name)
 
 let card = document.querySelector(".cardTemplate")
 
+fetch("https://api.github.com/users/malakayalvg")
+    .then(response=>response.json())
+    .then(data=>{
+        console.log(data)
+        const urlAvatar = data.avatar_url
+        console.log(urlAvatar)
+    })
+
 function makeCardFromStudent (student){
 
         let cardTemplate = `
             <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"> nom : ${student.name}</h5>
                         <p class="card-text"> age : ${student.age}</p>
@@ -72,3 +80,38 @@ function makeCardFromStudent (student){
 etudiants.forEach((etudiant)=>{
     card.innerHTML += makeCardFromStudent(etudiant)
 })
+
+/*
+const divBlague = document.querySelector(".blague")
+const h3Blague = document.querySelector('.blague')
+
+fetch("https://api.chucknorris.io/jokes/random")
+    .then(laBlagueEnJson=>laBlagueEnJson.json())
+    .then((laBlagueDeserialise)=>{
+        console.log(laBlagueDeserialise)
+        divBlague.innerHTML = laBlagueDeserialise.value
+    })
+
+const boutonBlague = document.querySelector(".boutonBlague")
+
+
+async function nouvelleBlagueDeChuckNorris (){
+    return await fetch("https://api.chucknorris.io/jokes/random")
+        .then(nouvelleBlagueJson=>nouvelleBlagueJson.json())
+        .then(nouvelleBlagueDem=>{
+            return nouvelleBlagueDem
+        })
+}
+
+boutonBlague.addEventListener("click",()=>{
+    nouvelleBlagueDeChuckNorris().then(data=>{
+        let template = <h3>${data.value}</h3>
+        divBlague.innerHTML += template;
+        }
+    )
+})
+
+ */
+
+
+
